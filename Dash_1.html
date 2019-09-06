@@ -1,0 +1,2967 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style type="text/css">.VirtualSelectGrid {
+  z-index: 1;
+}
+
+.VirtualizedSelectOption {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 .5rem;
+}
+.VirtualizedSelectFocusedOption {
+  background-color: rgba(0, 126, 255, 0.1);
+}
+.VirtualizedSelectDisabledOption {
+  opacity: 0.5;
+}
+.VirtualizedSelectSelectedOption {
+  font-weight: bold;
+}
+</style><style type="text/css">/* Collection default theme */
+
+.ReactVirtualized__Collection {
+}
+
+.ReactVirtualized__Collection__innerScrollContainer {
+}
+
+/* Grid default theme */
+
+.ReactVirtualized__Grid {
+}
+
+.ReactVirtualized__Grid__innerScrollContainer {
+}
+
+/* Table default theme */
+
+.ReactVirtualized__Table {
+}
+
+.ReactVirtualized__Table__Grid {
+}
+
+.ReactVirtualized__Table__headerRow {
+  font-weight: 700;
+  text-transform: uppercase;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.ReactVirtualized__Table__row {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.ReactVirtualized__Table__headerTruncatedText {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.ReactVirtualized__Table__headerColumn,
+.ReactVirtualized__Table__rowColumn {
+  margin-right: 10px;
+  min-width: 0px;
+}
+.ReactVirtualized__Table__rowColumn {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ReactVirtualized__Table__headerColumn:first-of-type,
+.ReactVirtualized__Table__rowColumn:first-of-type {
+  margin-left: 10px;
+}
+.ReactVirtualized__Table__sortableHeaderColumn {
+  cursor: pointer;
+}
+
+.ReactVirtualized__Table__sortableHeaderIconContainer {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.ReactVirtualized__Table__sortableHeaderIcon {
+  -webkit-flex: 0 0 24px;
+     -moz-box-flex: 0;
+      -ms-flex: 0 0 24px;
+          flex: 0 0 24px;
+  height: 1em;
+  width: 1em;
+  fill: currentColor;
+}
+
+/* List default theme */
+
+.ReactVirtualized__List {
+}
+</style><style type="text/css">input:invalid {
+    outline: solid red;
+}
+
+input:valid {
+    outline: none black;
+}</style><style type="text/css">.rc-slider {
+  position: relative;
+  height: 14px;
+  padding: 5px 0;
+  width: 100%;
+  border-radius: 6px;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.rc-slider * {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.rc-slider-rail {
+  position: absolute;
+  width: 100%;
+  background-color: #e9e9e9;
+  height: 4px;
+}
+.rc-slider-track {
+  position: absolute;
+  left: 0;
+  height: 4px;
+  border-radius: 6px;
+  background-color: #abe2fb;
+}
+.rc-slider-handle {
+  position: absolute;
+  margin-left: -7px;
+  margin-top: -5px;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  border-radius: 50%;
+  border: solid 2px #96dbfa;
+  background-color: #fff;
+}
+.rc-slider-handle:hover {
+  border-color: #57c5f7;
+}
+.rc-slider-handle-active:active {
+  border-color: #57c5f7;
+  box-shadow: 0 0 5px #57c5f7;
+}
+.rc-slider-mark {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  width: 100%;
+  font-size: 12px;
+}
+.rc-slider-mark-text {
+  position: absolute;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  color: #999;
+}
+.rc-slider-mark-text-active {
+  color: #666;
+}
+.rc-slider-step {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+}
+.rc-slider-dot {
+  position: absolute;
+  bottom: -2px;
+  margin-left: -4px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #e9e9e9;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.rc-slider-dot:first-child {
+  margin-left: -4px;
+}
+.rc-slider-dot:last-child {
+  margin-left: -4px;
+}
+.rc-slider-dot-active {
+  border-color: #96dbfa;
+}
+.rc-slider-disabled {
+  background-color: #e9e9e9;
+}
+.rc-slider-disabled .rc-slider-track {
+  background-color: #ccc;
+}
+.rc-slider-disabled .rc-slider-handle,
+.rc-slider-disabled .rc-slider-dot {
+  border-color: #ccc;
+  background-color: #fff;
+  cursor: not-allowed;
+}
+.rc-slider-disabled .rc-slider-mark-text,
+.rc-slider-disabled .rc-slider-dot {
+  cursor: not-allowed !important;
+}
+.rc-slider-vertical {
+  width: 14px;
+  height: 100%;
+  padding: 0 5px;
+}
+.rc-slider-vertical .rc-slider-rail {
+  height: 100%;
+  width: 4px;
+}
+.rc-slider-vertical .rc-slider-track {
+  left: 5px;
+  bottom: 0;
+  width: 4px;
+}
+.rc-slider-vertical .rc-slider-handle {
+  margin-left: -5px;
+  margin-bottom: -7px;
+}
+.rc-slider-vertical .rc-slider-mark {
+  top: 0;
+  left: 18px;
+  height: 100%;
+}
+.rc-slider-vertical .rc-slider-step {
+  height: 100%;
+  width: 4px;
+}
+.rc-slider-vertical .rc-slider-dot {
+  left: 2px;
+  margin-bottom: -4px;
+}
+.rc-slider-vertical .rc-slider-dot:first-child {
+  margin-bottom: -4px;
+}
+.rc-slider-vertical .rc-slider-dot:last-child {
+  margin-bottom: -4px;
+}
+.rc-slider-tooltip-zoom-down-enter,
+.rc-slider-tooltip-zoom-down-appear {
+  -webkit-animation-duration: .3s;
+          animation-duration: .3s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  display: block !important;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.rc-slider-tooltip-zoom-down-leave {
+  -webkit-animation-duration: .3s;
+          animation-duration: .3s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  display: block !important;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+.rc-slider-tooltip-zoom-down-enter.rc-slider-tooltip-zoom-down-enter-active,
+.rc-slider-tooltip-zoom-down-appear.rc-slider-tooltip-zoom-down-appear-active {
+  -webkit-animation-name: rcSliderTooltipZoomDownIn;
+          animation-name: rcSliderTooltipZoomDownIn;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+.rc-slider-tooltip-zoom-down-leave.rc-slider-tooltip-zoom-down-leave-active {
+  -webkit-animation-name: rcSliderTooltipZoomDownOut;
+          animation-name: rcSliderTooltipZoomDownOut;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+}
+.rc-slider-tooltip-zoom-down-enter,
+.rc-slider-tooltip-zoom-down-appear {
+  -webkit-transform: scale(0, 0);
+          transform: scale(0, 0);
+  -webkit-animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+          animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+.rc-slider-tooltip-zoom-down-leave {
+  -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+          animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+}
+@-webkit-keyframes rcSliderTooltipZoomDownIn {
+  0% {
+    opacity: 0;
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    -webkit-transform: scale(0, 0);
+            transform: scale(0, 0);
+  }
+  100% {
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+}
+@keyframes rcSliderTooltipZoomDownIn {
+  0% {
+    opacity: 0;
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    -webkit-transform: scale(0, 0);
+            transform: scale(0, 0);
+  }
+  100% {
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+}
+@-webkit-keyframes rcSliderTooltipZoomDownOut {
+  0% {
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    -webkit-transform: scale(0, 0);
+            transform: scale(0, 0);
+  }
+}
+@keyframes rcSliderTooltipZoomDownOut {
+  0% {
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+    -webkit-transform: scale(0, 0);
+            transform: scale(0, 0);
+  }
+}
+.rc-slider-tooltip {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  visibility: visible;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.rc-slider-tooltip * {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.rc-slider-tooltip-hidden {
+  display: none;
+}
+.rc-slider-tooltip-placement-top {
+  padding: 4px 0 8px 0;
+}
+.rc-slider-tooltip-inner {
+  padding: 6px 2px;
+  min-width: 24px;
+  height: 24px;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  background-color: #6c6c6c;
+  border-radius: 6px;
+  box-shadow: 0 0 4px #d9d9d9;
+}
+.rc-slider-tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+.rc-slider-tooltip-placement-top .rc-slider-tooltip-arrow {
+  bottom: 4px;
+  left: 50%;
+  margin-left: -4px;
+  border-width: 4px 4px 0;
+  border-top-color: #6c6c6c;
+}
+</style><style type="text/css">.Select,.Select-control{position:relative}.Select-control,.Select-input>input{width:100%;cursor:default;outline:0}.Select-arrow-zone,.Select-clear-zone,.Select-loading-zone{text-align:center;cursor:pointer}.Select,.Select div,.Select input,.Select span{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.Select.is-disabled>.Select-control{background-color:#f9f9f9}.Select.is-disabled>.Select-control:hover{box-shadow:none}.Select.is-disabled .Select-arrow-zone{cursor:default;pointer-events:none;opacity:.35}.Select-control{background-color:#fff;border-radius:4px;border:1px solid #ccc;color:#333;display:table;border-spacing:0;border-collapse:separate;height:36px;overflow:hidden}.is-searchable.is-focused:not(.is-open)>.Select-control,.is-searchable.is-open>.Select-control{cursor:text}.Select-control:hover{box-shadow:0 1px 0 rgba(0,0,0,.06)}.Select-control .Select-input:focus{outline:0}.is-open>.Select-control{border-bottom-right-radius:0;border-bottom-left-radius:0;background:#fff;border-color:#b3b3b3 #ccc #d9d9d9}.is-open>.Select-control .Select-arrow{top:-2px;border-color:transparent transparent #999;border-width:0 5px 5px}.is-focused:not(.is-open)>.Select-control{border-color:#007eff;box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 0 3px rgba(0,126,255,.1)}.Select--single>.Select-control .Select-value,.Select-placeholder{bottom:0;color:#aaa;left:0;line-height:34px;padding-left:10px;padding-right:10px;position:absolute;right:0;top:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.has-value.Select--single>.Select-control .Select-value .Select-value-label,.has-value.is-pseudo-focused.Select--single>.Select-control .Select-value .Select-value-label{color:#333}.has-value.Select--single>.Select-control .Select-value a.Select-value-label,.has-value.is-pseudo-focused.Select--single>.Select-control .Select-value a.Select-value-label{cursor:pointer;text-decoration:none}.has-value.Select--single>.Select-control .Select-value a.Select-value-label:focus,.has-value.Select--single>.Select-control .Select-value a.Select-value-label:hover,.has-value.is-pseudo-focused.Select--single>.Select-control .Select-value a.Select-value-label:focus,.has-value.is-pseudo-focused.Select--single>.Select-control .Select-value a.Select-value-label:hover{color:#007eff;outline:0;text-decoration:underline}.Select-input{height:34px;padding-left:10px;padding-right:10px;vertical-align:middle}.Select-input>input{background:none;border:0;box-shadow:none;display:inline-block;font-family:inherit;font-size:inherit;margin:0;line-height:14px;padding:8px 0 12px;-webkit-appearance:none}.Select-loading,.Select-loading-zone{width:16px;position:relative;vertical-align:middle}.is-focused .Select-input>input{cursor:text}.has-value.is-pseudo-focused .Select-input{opacity:0}.Select-control:not(.is-searchable)>.Select-input{outline:0}.Select-loading-zone{display:table-cell}.Select-loading{-webkit-animation:Select-animation-spin .4s infinite linear;-o-animation:Select-animation-spin .4s infinite linear;animation:Select-animation-spin .4s infinite linear;height:16px;box-sizing:border-box;border-radius:50%;border:2px solid #ccc;border-right-color:#333;display:inline-block}.Select-clear-zone{-webkit-animation:Select-animation-fadeIn .2s;-o-animation:Select-animation-fadeIn .2s;animation:Select-animation-fadeIn .2s;color:#999;display:table-cell;position:relative;vertical-align:middle;width:17px}.Select-clear-zone:hover{color:#D0021B}.Select-clear{display:inline-block;font-size:18px;line-height:1}.Select--multi .Select-clear-zone{width:17px}.Select-arrow-zone{display:table-cell;position:relative;vertical-align:middle;width:25px;padding-right:5px}.Select--multi .Select-multi-value-wrapper,.Select-arrow{display:inline-block}.Select-arrow{border-color:#999 transparent transparent;border-style:solid;border-width:5px 5px 2.5px;height:0;width:0;position:relative}.Select-arrow-zone:hover>.Select-arrow,.is-open .Select-arrow{border-top-color:#666}.Select .Select-aria-only{display:inline-block;height:1px;width:1px;margin:-1px;clip:rect(0,0,0,0);overflow:hidden;float:left}.Select-noresults,.Select-option{box-sizing:border-box;display:block;padding:8px 10px}@-webkit-keyframes Select-animation-fadeIn{from{opacity:0}to{opacity:1}}@keyframes Select-animation-fadeIn{from{opacity:0}to{opacity:1}}.Select-menu-outer{border-bottom-right-radius:4px;border-bottom-left-radius:4px;background-color:#fff;border:1px solid #ccc;border-top-color:#e6e6e6;box-shadow:0 1px 0 rgba(0,0,0,.06);box-sizing:border-box;margin-top:-1px;max-height:200px;position:absolute;top:100%;width:100%;z-index:1;-webkit-overflow-scrolling:touch}.Select-menu{max-height:198px;overflow-y:auto}.Select-option{background-color:#fff;color:#666;cursor:pointer}.Select-option:last-child{border-bottom-right-radius:4px;border-bottom-left-radius:4px}.Select-option.is-selected{background-color:#f5faff;background-color:rgba(0,126,255,.04);color:#333}.Select-option.is-focused{background-color:#ebf5ff;background-color:rgba(0,126,255,.08);color:#333}.Select-option.is-disabled{color:#ccc;cursor:default}.Select-noresults{color:#999;cursor:default}.Select--multi .Select-input{vertical-align:middle;margin-left:10px;padding:0}.Select--multi.has-value .Select-input{margin-left:5px}.Select--multi .Select-value{background-color:#ebf5ff;background-color:rgba(0,126,255,.08);border-radius:2px;border:1px solid #c2e0ff;border:1px solid rgba(0,126,255,.24);color:#007eff;display:inline-block;font-size:.9em;line-height:1.4;margin-left:5px;margin-top:5px;vertical-align:top}.Select--multi .Select-value-icon,.Select--multi .Select-value-label{display:inline-block;vertical-align:middle}.Select--multi .Select-value-label{border-bottom-right-radius:2px;border-top-right-radius:2px;cursor:default;padding:2px 5px}.Select--multi a.Select-value-label{color:#007eff;cursor:pointer;text-decoration:none}.Select--multi a.Select-value-label:hover{text-decoration:underline}.Select--multi .Select-value-icon{cursor:pointer;border-bottom-left-radius:2px;border-top-left-radius:2px;border-right:1px solid #c2e0ff;border-right:1px solid rgba(0,126,255,.24);padding:1px 5px 3px}.Select--multi .Select-value-icon:focus,.Select--multi .Select-value-icon:hover{background-color:#d8eafd;background-color:rgba(0,113,230,.08);color:#0071e6}.Select--multi .Select-value-icon:active{background-color:#c2e0ff;background-color:rgba(0,126,255,.24)}.Select--multi.is-disabled .Select-value{background-color:#fcfcfc;border:1px solid #e3e3e3;color:#333}.Select--multi.is-disabled .Select-value-icon{cursor:not-allowed;border-right:1px solid #e3e3e3}.Select--multi.is-disabled .Select-value-icon:active,.Select--multi.is-disabled .Select-value-icon:focus,.Select--multi.is-disabled .Select-value-icon:hover{background-color:#fcfcfc}@keyframes Select-animation-spin{to{transform:rotate(1turn)}}@-webkit-keyframes Select-animation-spin{to{-webkit-transform:rotate(1turn)}}</style><style type="text/css">/**
+ * Default styles
+ */
+.hljs {
+    display: block;
+    padding: 0.5em;
+    overflow-x: auto;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/**
+ * Light theme styles
+ * Light theme from react-syntax-highlighter 'arduino-light'
+ * https://github.com/conorhastings/react-syntax-highlighter/blob/master/src/styles/hljs/arduino-light.js
+ */
+.hljs {
+    background: #FFFFFF;
+    color: #434f54;
+}
+
+.hljs-comment {
+    color: rgba(149,165,166,.8);
+}
+
+.hljs-built_in,
+.hljs-literal,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition {
+  color: #D35400;
+}
+
+.hljs-meta-keyboard,
+.hljs-function {
+    color: #728E00;
+}
+
+.hljs-meta {
+    color: #434f54;
+}
+
+.hljs-type,
+.hljs-string,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion {
+  color: #005C5F;
+}
+
+.hljs-title,
+.hljs-section {
+  color: #880000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-attribute,
+.hljs-tag,
+.hljs-doctag,
+.hljs-name,
+.hljs-regexp,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-psuedo {
+  color: #00979D;
+}
+
+.hljs-subst {
+    color: #434f54;
+}
+
+.hljs-number {
+    color: #8A7B52;
+}
+
+/**
+ * Dark theme styles
+ * Dark theme from react-syntax-highlighter 'monokai'
+ * https://github.com/conorhastings/react-syntax-highlighter/blob/master/src/styles/hljs/monokai.js
+ */
+.hljs-dark .hljs {
+    background: #272822;
+    color: #ddd;
+}
+
+.hljs-dark .hljs-tag,
+.hljs-dark .hljs-keyword,
+.hljs-dark .hljs-selector-tag,
+.hljs-dark .hljs-literal,
+.hljs-dark .hljs-strong,
+.hljs-dark .hljs-name {
+    color: #f92672;
+}
+
+.hljs-dark .hljs-code {
+    color: #66d9ef;
+}
+
+.hljs-dark .hljs-class .hljs-title {
+    color: #ffffff;
+}
+
+.hljs-dark .hljs-attribute,
+.hljs-dark .hljs-symbol,
+.hljs-dark .hljs-regexp,
+.hljs-dark .hljs-link {
+    color: #bf79db;
+}
+
+.hljs-dark .hljs-string,
+.hljs-dark .hljs-bullet,
+.hljs-dark .hljs-subst,
+.hljs-dark .hljs-title,
+.hljs-dark .hljs-section,
+.hljs-dark .hljs-emphasis,
+.hljs-dark .hljs-type,
+.hljs-dark .hljs-built_in,
+.hljs-dark .hljs-builtin-name,
+.hljs-dark .hljs-selector-attr,
+.hljs-dark .hljs-selector-pseudo,
+.hljs-dark .hljs-addition,
+.hljs-dark .hljs-variable,
+.hljs-dark .hljs-template-tag,
+.hljs-dark .hljs-template-variable {
+    color: #a6e22e;
+}
+
+.hljs-dark .hljs-comment,
+.hljs-dark .hljs-quote,
+.hljs-dark .hljs-deletion,
+.hljs-dark .hljs-meta {
+    color: #75715e;
+}
+
+.hljs-dark .hljs-doctag,
+.hljs-dark .hljs-selector-id {
+    font-weight: bold;
+}
+</style><style type="text/css">.dash-logout-btn {
+    padding: 1rem;
+    background-color: #119DFF;
+    border: 1px solid #119DFF;
+    color: #ffffff;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.dash-logout-btn:hover, .dash-logout-btn:focus {
+    background-color: #0d76bf;
+    border: 1px solid #0d76bf;
+}
+
+.dash-logout-frame {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+</style><style type="text/css">.PresetDateRangePicker_panel {
+  padding: 0 22px 11px
+}
+.PresetDateRangePicker_button {
+  position: relative;
+  height: 100%;
+  text-align: center;
+  background: 0 0;
+  border: 2px solid #00a699;
+  color: #00a699;
+  padding: 4px 12px;
+  margin-right: 8px;
+  font: inherit;
+  font-weight: 700;
+  line-height: normal;
+  overflow: visible;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: pointer
+}
+.PresetDateRangePicker_button:active {
+  outline: 0
+}
+.PresetDateRangePicker_button__selected {
+  color: #fff;
+  background: #00a699
+}
+.SingleDatePickerInput {
+  display: inline-block;
+  background-color: #fff
+}
+.SingleDatePickerInput__withBorder {
+  border-radius: 2px;
+  border: 1px solid #dbdbdb
+}
+.SingleDatePickerInput__rtl {
+  direction: rtl
+}
+.SingleDatePickerInput__disabled {
+  background-color: #f2f2f2
+}
+.SingleDatePickerInput__block {
+  display: block
+}
+.SingleDatePickerInput__showClearDate {
+  padding-right: 30px
+}
+.SingleDatePickerInput_clearDate {
+  background: 0 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 10px 0 5px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%)
+}
+.SingleDatePickerInput_clearDate__default:focus,
+.SingleDatePickerInput_clearDate__default:hover {
+  background: #dbdbdb;
+  border-radius: 50%
+}
+.SingleDatePickerInput_clearDate__small {
+  padding: 6px
+}
+.SingleDatePickerInput_clearDate__hide {
+  visibility: hidden
+}
+.SingleDatePickerInput_clearDate_svg {
+  fill: #82888a;
+  height: 12px;
+  width: 15px;
+  vertical-align: middle
+}
+.SingleDatePickerInput_clearDate_svg__small {
+  height: 9px
+}
+.SingleDatePickerInput_calendarIcon {
+  background: 0 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px;
+  margin: 0 5px 0 10px
+}
+.SingleDatePickerInput_calendarIcon_svg {
+  fill: #82888a;
+  height: 15px;
+  width: 14px;
+  vertical-align: middle
+}
+.SingleDatePicker {
+  position: relative;
+  display: inline-block
+}
+.SingleDatePicker__block {
+  display: block
+}
+.SingleDatePicker_picker {
+  z-index: 1;
+  background-color: #fff;
+  position: absolute
+}
+.SingleDatePicker_picker__rtl {
+  direction: rtl
+}
+.SingleDatePicker_picker__directionLeft {
+  left: 0
+}
+.SingleDatePicker_picker__directionRight {
+  right: 0
+}
+.SingleDatePicker_picker__portal {
+  background-color: rgba(0,0,0,.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%
+}
+.SingleDatePicker_picker__fullScreenPortal {
+  background-color: #fff
+}
+.SingleDatePicker_closeButton {
+  background: 0 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px;
+  z-index: 2
+}
+.SingleDatePicker_closeButton:focus,
+.SingleDatePicker_closeButton:hover {
+  color: darken(#cacccd,10%);
+  text-decoration: none
+}
+.SingleDatePicker_closeButton_svg {
+  height: 15px;
+  width: 15px;
+  fill: #cacccd
+}
+.DayPickerKeyboardShortcuts_buttonReset {
+  background: 0 0;
+  border: 0;
+  border-radius: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  cursor: pointer;
+  font-size: 14px
+}
+.DayPickerKeyboardShortcuts_buttonReset:active {
+  outline: 0
+}
+.DayPickerKeyboardShortcuts_show {
+  width: 33px;
+  height: 26px;
+  position: absolute;
+  z-index: 2
+}
+.DayPickerKeyboardShortcuts_show::before {
+  content: "";
+  display: block;
+  position: absolute
+}
+.DayPickerKeyboardShortcuts_show__bottomRight {
+  bottom: 0;
+  right: 0
+}
+.DayPickerKeyboardShortcuts_show__bottomRight::before {
+  border-top: 26px solid transparent;
+  border-right: 33px solid #00a699;
+  bottom: 0;
+  right: 0
+}
+.DayPickerKeyboardShortcuts_show__bottomRight:hover::before {
+  border-right: 33px solid #008489
+}
+.DayPickerKeyboardShortcuts_show__topRight {
+  top: 0;
+  right: 0
+}
+.DayPickerKeyboardShortcuts_show__topRight::before {
+  border-bottom: 26px solid transparent;
+  border-right: 33px solid #00a699;
+  top: 0;
+  right: 0
+}
+.DayPickerKeyboardShortcuts_show__topRight:hover::before {
+  border-right: 33px solid #008489
+}
+.DayPickerKeyboardShortcuts_show__topLeft {
+  top: 0;
+  left: 0
+}
+.DayPickerKeyboardShortcuts_show__topLeft::before {
+  border-bottom: 26px solid transparent;
+  border-left: 33px solid #00a699;
+  top: 0;
+  left: 0
+}
+.DayPickerKeyboardShortcuts_show__topLeft:hover::before {
+  border-left: 33px solid #008489
+}
+.DayPickerKeyboardShortcuts_showSpan {
+  color: #fff;
+  position: absolute
+}
+.DayPickerKeyboardShortcuts_showSpan__bottomRight {
+  bottom: 0;
+  right: 5px
+}
+.DayPickerKeyboardShortcuts_showSpan__topRight {
+  top: 1px;
+  right: 5px
+}
+.DayPickerKeyboardShortcuts_showSpan__topLeft {
+  top: 1px;
+  left: 5px
+}
+.DayPickerKeyboardShortcuts_panel {
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 2px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  padding: 22px;
+  margin: 33px;
+  text-align: left
+}
+.DayPickerKeyboardShortcuts_title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0
+}
+.DayPickerKeyboardShortcuts_list {
+  list-style: none;
+  padding: 0;
+  font-size: 14px
+}
+.DayPickerKeyboardShortcuts_close {
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  z-index: 2
+}
+.DayPickerKeyboardShortcuts_close:active {
+  outline: 0
+}
+.DayPickerKeyboardShortcuts_closeSvg {
+  height: 15px;
+  width: 15px;
+  fill: #cacccd
+}
+.DayPickerKeyboardShortcuts_closeSvg:focus,
+.DayPickerKeyboardShortcuts_closeSvg:hover {
+  fill: #82888a
+}
+.CalendarDay {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center
+}
+.CalendarDay:active {
+  outline: 0
+}
+.CalendarDay__defaultCursor {
+  cursor: default
+}
+.CalendarDay__default {
+  border: 1px solid #e4e7e7;
+  color: #484848;
+  background: #fff
+}
+.CalendarDay__default:hover {
+  background: #e4e7e7;
+  border: 1px solid #e4e7e7;
+  color: inherit
+}
+.CalendarDay__hovered_offset {
+  background: #f4f5f5;
+  border: 1px double #e4e7e7;
+  color: inherit
+}
+.CalendarDay__outside {
+  border: 0;
+  background: #fff;
+  color: #484848
+}
+.CalendarDay__outside:hover {
+  border: 0
+}
+.CalendarDay__blocked_minimum_nights {
+  background: #fff;
+  border: 1px solid #eceeee;
+  color: #cacccd
+}
+.CalendarDay__blocked_minimum_nights:active,
+.CalendarDay__blocked_minimum_nights:hover {
+  background: #fff;
+  color: #cacccd
+}
+.CalendarDay__highlighted_calendar {
+  background: #ffe8bc;
+  color: #484848
+}
+.CalendarDay__highlighted_calendar:active,
+.CalendarDay__highlighted_calendar:hover {
+  background: #ffce71;
+  color: #484848
+}
+.CalendarDay__selected_span {
+  background: #66e2da;
+  border: 1px double #33dacd;
+  color: #fff
+}
+.CalendarDay__selected_span:active,
+.CalendarDay__selected_span:hover {
+  background: #33dacd;
+  border: 1px double #33dacd;
+  color: #fff
+}
+.CalendarDay__selected,
+.CalendarDay__selected:active,
+.CalendarDay__selected:hover {
+  background: #00a699;
+  border: 1px double #00a699;
+  color: #fff
+}
+.CalendarDay__hovered_span,
+.CalendarDay__hovered_span:hover {
+  background: #b2f1ec;
+  border: 1px double #80e8e0;
+  color: #007a87
+}
+.CalendarDay__hovered_span:active {
+  background: #80e8e0;
+  border: 1px double #80e8e0;
+  color: #007a87
+}
+.CalendarDay__blocked_calendar,
+.CalendarDay__blocked_calendar:active,
+.CalendarDay__blocked_calendar:hover {
+  background: #cacccd;
+  border: 1px solid #cacccd;
+  color: #82888a
+}
+.CalendarDay__blocked_out_of_range,
+.CalendarDay__blocked_out_of_range:active,
+.CalendarDay__blocked_out_of_range:hover {
+  background: #fff;
+  border: 1px solid #e4e7e7;
+  color: #cacccd
+}
+.CalendarDay__hovered_start_first_possible_end {
+  background: #eceeee;
+  border: 1px double #eceeee
+}
+.CalendarDay__hovered_start_blocked_min_nights {
+  background: #eceeee;
+  border: 1px double #e4e7e7
+}
+.CalendarMonth {
+  background: #fff;
+  text-align: center;
+  vertical-align: top;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
+}
+.CalendarMonth_table {
+  border-collapse: collapse;
+  border-spacing: 0
+}
+.CalendarMonth_verticalSpacing {
+  border-collapse: separate
+}
+.CalendarMonth_caption {
+  color: #484848;
+  font-size: 18px;
+  text-align: center;
+  padding-top: 22px;
+  padding-bottom: 37px;
+  caption-side: initial
+}
+.CalendarMonth_caption__verticalScrollable {
+  padding-top: 12px;
+  padding-bottom: 7px
+}
+.CalendarMonthGrid {
+  background: #fff;
+  text-align: left;
+  z-index: 0
+}
+.CalendarMonthGrid__animating {
+  z-index: 1
+}
+.CalendarMonthGrid__horizontal {
+  position: absolute;
+  left: 9px
+}
+.CalendarMonthGrid__vertical {
+  margin: 0 auto
+}
+.CalendarMonthGrid__vertical_scrollable {
+  margin: 0 auto;
+  overflow-y: scroll
+}
+.CalendarMonthGrid_month__horizontal {
+  display: inline-block;
+  vertical-align: top;
+  min-height: 100%
+}
+.CalendarMonthGrid_month__hideForAnimation {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none
+}
+.CalendarMonthGrid_month__hidden {
+  visibility: hidden
+}
+.DayPickerNavigation {
+  position: relative;
+  z-index: 2
+}
+.DayPickerNavigation__horizontal {
+  height: 0
+}
+.DayPickerNavigation__verticalDefault {
+  position: absolute;
+  width: 100%;
+  height: 52px;
+  bottom: 0;
+  left: 0
+}
+.DayPickerNavigation__verticalScrollableDefault {
+  position: relative
+}
+.DayPickerNavigation_button {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 0;
+  padding: 0;
+  margin: 0
+}
+.DayPickerNavigation_button__default {
+  border: 1px solid #e4e7e7;
+  background-color: #fff;
+  color: #757575
+}
+.DayPickerNavigation_button__default:focus,
+.DayPickerNavigation_button__default:hover {
+  border: 1px solid #c4c4c4
+}
+.DayPickerNavigation_button__default:active {
+  background: #f2f2f2
+}
+.DayPickerNavigation_button__disabled {
+  cursor: default;
+  border: 1px solid #f2f2f2
+}
+.DayPickerNavigation_button__disabled:focus,
+.DayPickerNavigation_button__disabled:hover {
+  border: 1px solid #f2f2f2
+}
+.DayPickerNavigation_button__disabled:active {
+  background: 0 0
+}
+.DayPickerNavigation_button__horizontalDefault {
+  position: absolute;
+  top: 18px;
+  line-height: .78;
+  border-radius: 3px;
+  padding: 6px 9px
+}
+.DayPickerNavigation_leftButton__horizontalDefault {
+  left: 22px
+}
+.DayPickerNavigation_rightButton__horizontalDefault {
+  right: 22px
+}
+.DayPickerNavigation_button__verticalDefault {
+  padding: 5px;
+  background: #fff;
+  box-shadow: 0 0 5px 2px rgba(0,0,0,.1);
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  height: 100%;
+  width: 50%
+}
+.DayPickerNavigation_nextButton__verticalDefault {
+  border-left: 0
+}
+.DayPickerNavigation_nextButton__verticalScrollableDefault {
+  width: 100%
+}
+.DayPickerNavigation_svg__horizontal {
+  height: 19px;
+  width: 19px;
+  fill: #82888a;
+  display: block
+}
+.DayPickerNavigation_svg__vertical {
+  height: 42px;
+  width: 42px;
+  fill: #484848
+}
+.DayPickerNavigation_svg__disabled {
+  fill: #f2f2f2
+}
+.DayPicker {
+  background: #fff;
+  position: relative;
+  text-align: left
+}
+.DayPicker__horizontal {
+  background: #fff
+}
+.DayPicker__verticalScrollable {
+  height: 100%
+}
+.DayPicker__hidden {
+  visibility: hidden
+}
+.DayPicker__withBorder {
+  box-shadow: 0 2px 6px rgba(0,0,0,.05),0 0 0 1px rgba(0,0,0,.07);
+  border-radius: 3px
+}
+.DayPicker_portal__horizontal {
+  box-shadow: none;
+  position: absolute;
+  left: 50%;
+  top: 50%
+}
+.DayPicker_portal__vertical {
+  position: initial
+}
+.DayPicker_focusRegion {
+  outline: 0
+}
+.DayPicker_calendarInfo__horizontal,
+.DayPicker_wrapper__horizontal {
+  display: inline-block;
+  vertical-align: top
+}
+.DayPicker_weekHeaders {
+  position: relative
+}
+.DayPicker_weekHeaders__horizontal {
+  margin-left: 9px
+}
+.DayPicker_weekHeader {
+  color: #757575;
+  position: absolute;
+  top: 62px;
+  z-index: 2;
+  text-align: left
+}
+.DayPicker_weekHeader__vertical {
+  left: 50%
+}
+.DayPicker_weekHeader__verticalScrollable {
+  top: 0;
+  display: table-row;
+  border-bottom: 1px solid #dbdbdb;
+  background: #fff;
+  margin-left: 0;
+  left: 0;
+  width: 100%;
+  text-align: center
+}
+.DayPicker_weekHeader_ul {
+  list-style: none;
+  margin: 1px 0;
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 14px
+}
+.DayPicker_weekHeader_li {
+  display: inline-block;
+  text-align: center
+}
+.DayPicker_transitionContainer {
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px
+}
+.DayPicker_transitionContainer__horizontal {
+  -webkit-transition: height .2s ease-in-out;
+  -moz-transition: height .2s ease-in-out;
+  transition: height .2s ease-in-out
+}
+.DayPicker_transitionContainer__vertical {
+  width: 100%
+}
+.DayPicker_transitionContainer__verticalScrollable {
+  padding-top: 20px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow-y: scroll
+}
+.DateInput {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  position: relative;
+  display: inline-block;
+  width: 130px;
+  vertical-align: middle
+}
+.DateInput__small {
+  width: 97px
+}
+.DateInput__block {
+  width: 100%
+}
+.DateInput__disabled {
+  background: #f2f2f2;
+  color: #dbdbdb
+}
+.DateInput_input {
+  font-weight: 200;
+  font-size: 19px;
+  line-height: 24px;
+  color: #484848;
+  background-color: #fff;
+  width: 100%;
+  padding: 11px 11px 9px;
+  border: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 2px solid transparent;
+  border-left: 0;
+  border-radius: 0
+}
+.DateInput_input__small {
+  font-size: 15px;
+  line-height: 18px;
+  letter-spacing: .2px;
+  padding: 7px 7px 5px
+}
+.DateInput_input__regular {
+  font-weight: auto
+}
+.DateInput_input__readOnly {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
+}
+.DateInput_input__focused {
+  outline: 0;
+  background: #fff;
+  border: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 2px solid #008489;
+  border-left: 0
+}
+.DateInput_input__disabled {
+  background: #f2f2f2;
+  font-style: italic
+}
+.DateInput_screenReaderMessage {
+  border: 0;
+  clip: rect(0,0,0,0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px
+}
+.DateInput_fang {
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  left: 22px;
+  z-index: 2
+}
+.DateInput_fangShape {
+  fill: #fff
+}
+.DateInput_fangStroke {
+  stroke: #dbdbdb;
+  fill: transparent
+}
+.DateRangePickerInput {
+  background-color: #fff;
+  display: inline-block
+}
+.DateRangePickerInput__disabled {
+  background: #f2f2f2
+}
+.DateRangePickerInput__withBorder {
+  border-radius: 2px;
+  border: 1px solid #dbdbdb
+}
+.DateRangePickerInput__rtl {
+  direction: rtl
+}
+.DateRangePickerInput__block {
+  display: block
+}
+.DateRangePickerInput__showClearDates {
+  padding-right: 30px
+}
+.DateRangePickerInput_arrow {
+  display: inline-block;
+  vertical-align: middle;
+  color: #484848
+}
+.DateRangePickerInput_arrow_svg {
+  vertical-align: middle;
+  fill: #484848;
+  height: 24px;
+  width: 24px
+}
+.DateRangePickerInput_clearDates {
+  background: 0 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 10px 0 5px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%)
+}
+.DateRangePickerInput_clearDates__small {
+  padding: 6px
+}
+.DateRangePickerInput_clearDates_default:focus,
+.DateRangePickerInput_clearDates_default:hover {
+  background: #dbdbdb;
+  border-radius: 50%
+}
+.DateRangePickerInput_clearDates__hide {
+  visibility: hidden
+}
+.DateRangePickerInput_clearDates_svg {
+  fill: #82888a;
+  height: 12px;
+  width: 15px;
+  vertical-align: middle
+}
+.DateRangePickerInput_clearDates_svg__small {
+  height: 9px
+}
+.DateRangePickerInput_calendarIcon {
+  background: 0 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px;
+  margin: 0 5px 0 10px
+}
+.DateRangePickerInput_calendarIcon_svg {
+  fill: #82888a;
+  height: 15px;
+  width: 14px;
+  vertical-align: middle
+}
+.DateRangePicker {
+  position: relative;
+  display: inline-block
+}
+.DateRangePicker__block {
+  display: block
+}
+.DateRangePicker_picker {
+  z-index: 1;
+  background-color: #fff;
+  position: absolute
+}
+.DateRangePicker_picker__rtl {
+  direction: rtl
+}
+.DateRangePicker_picker__directionLeft {
+  left: 0
+}
+.DateRangePicker_picker__directionRight {
+  right: 0
+}
+.DateRangePicker_picker__portal {
+  background-color: rgba(0,0,0,.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%
+}
+.DateRangePicker_picker__fullScreenPortal {
+  background-color: #fff
+}
+.DateRangePicker_closeButton {
+  background: 0 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px;
+  z-index: 2
+}
+.DateRangePicker_closeButton:focus,
+.DateRangePicker_closeButton:hover {
+  color: darken(#cacccd,10%);
+  text-decoration: none
+}
+.DateRangePicker_closeButton_svg {
+  height: 15px;
+  width: 15px;
+  fill: #cacccd
+}</style><style type="text/css">.DateInput_input {
+    box-sizing: border-box;
+}</style>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta charset="UTF-8">
+        <title>Dash</title>
+        <link rel="icon" type="image/x-icon" href="http://127.0.0.1:8050/_favicon.ico?v=1.2.0">
+        <link rel="stylesheet" href="Dash_1_fichiers/bWLwgP.css">
+    <style type="text/css">/**
+ * React Select
+ * ============
+ * Created by Jed Watson and Joss Mackison for KeystoneJS, http://www.keystonejs.com/
+ * https://twitter.com/jedwatson https://twitter.com/jossmackison https://twitter.com/keystonejs
+ * MIT License: https://github.com/JedWatson/react-select
+*/
+.Select {
+  position: relative;
+}
+.Select input::-webkit-contacts-auto-fill-button,
+.Select input::-webkit-credentials-auto-fill-button {
+  display: none !important;
+}
+.Select input::-ms-clear {
+  display: none !important;
+}
+.Select input::-ms-reveal {
+  display: none !important;
+}
+.Select,
+.Select div,
+.Select input,
+.Select span {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.Select.is-disabled .Select-arrow-zone {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.35;
+}
+.Select.is-disabled > .Select-control {
+  background-color: #f9f9f9;
+}
+.Select.is-disabled > .Select-control:hover {
+  box-shadow: none;
+}
+.Select.is-open > .Select-control {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  background: #fff;
+  border-color: #b3b3b3 #ccc #d9d9d9;
+}
+.Select.is-open > .Select-control .Select-arrow {
+  top: -2px;
+  border-color: transparent transparent #999;
+  border-width: 0 5px 5px;
+}
+.Select.is-searchable.is-open > .Select-control {
+  cursor: text;
+}
+.Select.is-searchable.is-focused:not(.is-open) > .Select-control {
+  cursor: text;
+}
+.Select.is-focused > .Select-control {
+  background: #fff;
+}
+.Select.is-focused:not(.is-open) > .Select-control {
+  border-color: #007eff;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgba(0, 126, 255, 0.1);
+  background: #fff;
+}
+.Select.has-value.is-clearable.Select--single > .Select-control .Select-value {
+  padding-right: 42px;
+}
+.Select.has-value.Select--single > .Select-control .Select-value .Select-value-label,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
+  color: #333;
+}
+.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label {
+  cursor: pointer;
+  text-decoration: none;
+}
+.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:hover,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:hover,
+.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:focus {
+  color: #007eff;
+  outline: none;
+  text-decoration: underline;
+}
+.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:focus {
+  background: #fff;
+}
+.Select.has-value.is-pseudo-focused .Select-input {
+  opacity: 0;
+}
+.Select.is-open .Select-arrow,
+.Select .Select-arrow-zone:hover > .Select-arrow {
+  border-top-color: #666;
+}
+.Select.Select--rtl {
+  direction: rtl;
+  text-align: right;
+}
+.Select-control {
+  background-color: #fff;
+  border-color: #d9d9d9 #ccc #b3b3b3;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  color: #333;
+  cursor: default;
+  display: table;
+  border-spacing: 0;
+  border-collapse: separate;
+  height: 36px;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.Select-control:hover {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+.Select-control .Select-input:focus {
+  outline: none;
+  background: #fff;
+}
+.Select-placeholder,
+.Select--single > .Select-control .Select-value {
+  bottom: 0;
+  color: #aaa;
+  left: 0;
+  line-height: 34px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.Select-input {
+  height: 34px;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+.Select-input > input {
+  width: 100%;
+  background: none transparent;
+  border: 0 none;
+  box-shadow: none;
+  cursor: default;
+  display: inline-block;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  outline: none;
+  line-height: 17px;
+  /* For IE 8 compatibility */
+  padding: 8px 0 12px;
+  /* For IE 8 compatibility */
+  -webkit-appearance: none;
+}
+.is-focused .Select-input > input {
+  cursor: text;
+}
+.has-value.is-pseudo-focused .Select-input {
+  opacity: 0;
+}
+.Select-control:not(.is-searchable) > .Select-input {
+  outline: none;
+}
+.Select-loading-zone {
+  cursor: pointer;
+  display: table-cell;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 16px;
+}
+.Select-loading {
+  -webkit-animation: Select-animation-spin 400ms infinite linear;
+  -o-animation: Select-animation-spin 400ms infinite linear;
+  animation: Select-animation-spin 400ms infinite linear;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-right-color: #333;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+.Select-clear-zone {
+  -webkit-animation: Select-animation-fadeIn 200ms;
+  -o-animation: Select-animation-fadeIn 200ms;
+  animation: Select-animation-fadeIn 200ms;
+  color: #999;
+  cursor: pointer;
+  display: table-cell;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 17px;
+}
+.Select-clear-zone:hover {
+  color: #D0021B;
+}
+.Select-clear {
+  display: inline-block;
+  font-size: 18px;
+  line-height: 1;
+}
+.Select--multi .Select-clear-zone {
+  width: 17px;
+}
+.Select-arrow-zone {
+  cursor: pointer;
+  display: table-cell;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 25px;
+  padding-right: 5px;
+}
+.Select--rtl .Select-arrow-zone {
+  padding-right: 0;
+  padding-left: 5px;
+}
+.Select-arrow {
+  border-color: #999 transparent transparent;
+  border-style: solid;
+  border-width: 5px 5px 2.5px;
+  display: inline-block;
+  height: 0;
+  width: 0;
+  position: relative;
+}
+.Select-control > *:last-child {
+  padding-right: 5px;
+}
+.Select--multi .Select-multi-value-wrapper {
+  display: inline-block;
+}
+.Select .Select-aria-only {
+  position: absolute;
+  display: inline-block;
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  float: left;
+}
+@-webkit-keyframes Select-animation-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes Select-animation-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.Select-menu-outer {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top-color: #e6e6e6;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  margin-top: -1px;
+  max-height: 200px;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  z-index: 1;
+  -webkit-overflow-scrolling: touch;
+}
+.Select-menu {
+  max-height: 198px;
+  overflow-y: auto;
+}
+.Select-option {
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #666666;
+  cursor: pointer;
+  display: block;
+  padding: 8px 10px;
+}
+.Select-option:last-child {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.Select-option.is-selected {
+  background-color: #f5faff;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 126, 255, 0.04);
+  color: #333;
+}
+.Select-option.is-focused {
+  background-color: #ebf5ff;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 126, 255, 0.08);
+  color: #333;
+}
+.Select-option.is-disabled {
+  color: #cccccc;
+  cursor: default;
+}
+.Select-noresults {
+  box-sizing: border-box;
+  color: #999999;
+  cursor: default;
+  display: block;
+  padding: 8px 10px;
+}
+.Select--multi .Select-input {
+  vertical-align: middle;
+  margin-left: 10px;
+  padding: 0;
+}
+.Select--multi.Select--rtl .Select-input {
+  margin-left: 0;
+  margin-right: 10px;
+}
+.Select--multi.has-value .Select-input {
+  margin-left: 5px;
+}
+.Select--multi .Select-value {
+  background-color: #ebf5ff;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 126, 255, 0.08);
+  border-radius: 2px;
+  border: 1px solid #c2e0ff;
+  /* Fallback color for IE 8 */
+  border: 1px solid rgba(0, 126, 255, 0.24);
+  color: #007eff;
+  display: inline-block;
+  font-size: 0.9em;
+  line-height: 1.4;
+  margin-left: 5px;
+  margin-top: 5px;
+  vertical-align: top;
+}
+.Select--multi .Select-value-icon,
+.Select--multi .Select-value-label {
+  display: inline-block;
+  vertical-align: middle;
+}
+.Select--multi .Select-value-label {
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+  cursor: default;
+  padding: 2px 5px;
+}
+.Select--multi a.Select-value-label {
+  color: #007eff;
+  cursor: pointer;
+  text-decoration: none;
+}
+.Select--multi a.Select-value-label:hover {
+  text-decoration: underline;
+}
+.Select--multi .Select-value-icon {
+  cursor: pointer;
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+  border-right: 1px solid #c2e0ff;
+  /* Fallback color for IE 8 */
+  border-right: 1px solid rgba(0, 126, 255, 0.24);
+  padding: 1px 5px 3px;
+}
+.Select--multi .Select-value-icon:hover,
+.Select--multi .Select-value-icon:focus {
+  background-color: #d8eafd;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 113, 230, 0.08);
+  color: #0071e6;
+}
+.Select--multi .Select-value-icon:active {
+  background-color: #c2e0ff;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 126, 255, 0.24);
+}
+.Select--multi.Select--rtl .Select-value {
+  margin-left: 0;
+  margin-right: 5px;
+}
+.Select--multi.Select--rtl .Select-value-icon {
+  border-right: none;
+  border-left: 1px solid #c2e0ff;
+  /* Fallback color for IE 8 */
+  border-left: 1px solid rgba(0, 126, 255, 0.24);
+}
+.Select--multi.is-disabled .Select-value {
+  background-color: #fcfcfc;
+  border: 1px solid #e3e3e3;
+  color: #333;
+}
+.Select--multi.is-disabled .Select-value-icon {
+  cursor: not-allowed;
+  border-right: 1px solid #e3e3e3;
+}
+.Select--multi.is-disabled .Select-value-icon:hover,
+.Select--multi.is-disabled .Select-value-icon:focus,
+.Select--multi.is-disabled .Select-value-icon:active {
+  background-color: #fcfcfc;
+}
+@keyframes Select-animation-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@-webkit-keyframes Select-animation-spin {
+  to {
+    -webkit-transform: rotate(1turn);
+  }
+}
+</style><style type="text/css">.dash-spreadsheet.dash-freeze-left,
+.dash-spreadsheet.dash-freeze-top {
+  width: auto;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+}
+.dash-spreadsheet.dash-freeze-left {
+  max-width: 500px;
+}
+.dash-spreadsheet.dash-freeze-top,
+.dash-spreadsheet.dash-virtualized {
+  max-height: 500px;
+}
+.dash-tooltip {
+  border: 1px solid #e4e4e4;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 500;
+}
+.dash-tooltip .dash-table-tooltip {
+  position: relative;
+  background-color: #f6f6f6;
+  max-width: 300px;
+  min-width: 300px;
+  padding: 2px 10px;
+}
+.dash-tooltip[data-attr-anchor='top'] {
+  margin-top: 10px;
+}
+.dash-tooltip[data-attr-anchor='top']:after,
+.dash-tooltip[data-attr-anchor='top']:before {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.dash-tooltip[data-attr-anchor='top']:after {
+  border-color: transparent;
+  border-bottom-color: #f6f6f6;
+  border-width: 8px;
+  margin-left: -8px;
+}
+.dash-tooltip[data-attr-anchor='top']:before {
+  border-color: transparent;
+  border-bottom-color: #e4e4e4;
+  border-width: 9px;
+  margin-left: -9px;
+}
+.dash-tooltip[data-attr-anchor='bottom'] {
+  margin-bottom: 10px;
+}
+.dash-tooltip[data-attr-anchor='bottom']:after,
+.dash-tooltip[data-attr-anchor='bottom']:before {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.dash-tooltip[data-attr-anchor='bottom']:after {
+  border-color: transparent;
+  border-top-color: #f6f6f6;
+  border-width: 8px;
+  margin-left: -8px;
+}
+.dash-tooltip[data-attr-anchor='bottom']:before {
+  border-color: transparent;
+  border-top-color: #e4e4e4;
+  border-width: 9px;
+  margin-left: -9px;
+}
+.dash-spreadsheet-menu {
+  display: flex;
+  flex-direction: row;
+}
+.dash-spreadsheet-menu > * {
+  padding-right: 5px;
+}
+.dash-spreadsheet-menu .dash-spreadsheet-menu-item {
+  position: relative;
+}
+.dash-spreadsheet-menu .dash-spreadsheet-menu-item .show-hide-menu {
+  background-color: #fafafa;
+  border: 1px solid #d3d3d3;
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+  overflow: auto;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 500;
+}
+.dash-spreadsheet-menu .dash-spreadsheet-menu-item .show-hide-menu .show-hide-menu-item {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+.dash-spreadsheet-menu .dash-spreadsheet-menu-item .show-hide-menu .show-hide-menu-item label {
+  white-space: nowrap;
+}
+.dash-spreadsheet-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  /* focus happens after copying to clipboard */
+}
+.dash-spreadsheet-container div,
+.dash-spreadsheet-container dl,
+.dash-spreadsheet-container dt,
+.dash-spreadsheet-container dd,
+.dash-spreadsheet-container ul,
+.dash-spreadsheet-container ol,
+.dash-spreadsheet-container li,
+.dash-spreadsheet-container h1,
+.dash-spreadsheet-container h2,
+.dash-spreadsheet-container h3,
+.dash-spreadsheet-container h4,
+.dash-spreadsheet-container h5,
+.dash-spreadsheet-container h6,
+.dash-spreadsheet-container pre,
+.dash-spreadsheet-container code,
+.dash-spreadsheet-container form,
+.dash-spreadsheet-container fieldset,
+.dash-spreadsheet-container legend,
+.dash-spreadsheet-container input,
+.dash-spreadsheet-container textarea,
+.dash-spreadsheet-container p,
+.dash-spreadsheet-container blockquote,
+.dash-spreadsheet-container th,
+.dash-spreadsheet-container td {
+  margin: 0;
+  padding: 0;
+}
+.dash-spreadsheet-container table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.dash-spreadsheet-container fieldset,
+.dash-spreadsheet-container img {
+  border: 0;
+}
+.dash-spreadsheet-container address,
+.dash-spreadsheet-container caption,
+.dash-spreadsheet-container cite,
+.dash-spreadsheet-container code,
+.dash-spreadsheet-container dfn,
+.dash-spreadsheet-container em,
+.dash-spreadsheet-container strong,
+.dash-spreadsheet-container th,
+.dash-spreadsheet-container var {
+  font-style: normal;
+  font-weight: normal;
+}
+.dash-spreadsheet-container ol,
+.dash-spreadsheet-container ul {
+  list-style: none;
+}
+.dash-spreadsheet-container caption,
+.dash-spreadsheet-container th {
+  text-align: left;
+}
+.dash-spreadsheet-container h1,
+.dash-spreadsheet-container h2,
+.dash-spreadsheet-container h3,
+.dash-spreadsheet-container h4,
+.dash-spreadsheet-container h5,
+.dash-spreadsheet-container h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+.dash-spreadsheet-container q:before,
+.dash-spreadsheet-container q:after {
+  content: '';
+}
+.dash-spreadsheet-container abbr,
+.dash-spreadsheet-container acronym {
+  border: 0;
+  font-variant: normal;
+}
+.dash-spreadsheet-container sup {
+  vertical-align: text-top;
+}
+.dash-spreadsheet-container sub {
+  vertical-align: text-bottom;
+}
+.dash-spreadsheet-container input,
+.dash-spreadsheet-container textarea,
+.dash-spreadsheet-container select {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  *font-size: 100%;
+}
+.dash-spreadsheet-container legend {
+  color: #000;
+}
+.dash-spreadsheet-container #yui3-css-stamp.cssreset {
+  display: none;
+}
+.dash-spreadsheet-container input[type="button"] {
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+.dash-spreadsheet-container *:focus {
+  outline: none;
+}
+.dash-spreadsheet-container table {
+  font-size: inherit;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner *,
+.dash-spreadsheet-container .dash-spreadsheet-inner *:after,
+.dash-spreadsheet-container .dash-spreadsheet-inner *:before {
+  box-sizing: inherit;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner .Select {
+  overflow: hidden;
+  position: static;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner .Select,
+.dash-spreadsheet-container .dash-spreadsheet-inner .Select-control {
+  background-color: inherit;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner .Select-value {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: -2px;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner .marker-row tr {
+  visibility: hidden !important;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner .marker-row td,
+.dash-spreadsheet-container .dash-spreadsheet-inner .marker-row th {
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner .dash-filter input::placeholder {
+  color: inherit;
+  font-size: 0.8em;
+  padding-right: 5px;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner .dash-filter + .dash-filter:not(:hover):not(:focus-within) input::placeholder {
+  color: transparent;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner .dash-filter.invalid {
+  background-color: pink;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner:not(.dash-empty-11) .row-0 tr:last-of-type td,
+.dash-spreadsheet-container .dash-spreadsheet-inner:not(.dash-empty-11) .row-0 tr:last-of-type th {
+  border-bottom: none !important;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner:not(.dash-empty-01) .cell-0-0 tr td:last-of-type,
+.dash-spreadsheet-container .dash-spreadsheet-inner:not(.dash-empty-01) .cell-1-0 tr td:last-of-type,
+.dash-spreadsheet-container .dash-spreadsheet-inner:not(.dash-empty-01) .cell-0-0 tr th:last-of-type,
+.dash-spreadsheet-container .dash-spreadsheet-inner:not(.dash-empty-01) .cell-1-0 tr th:last-of-type {
+  border-right: none !important;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-freeze-left,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-freeze-top,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-virtualized {
+  overflow: hidden !important;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-freeze-left .row-0,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-freeze-top .row-0,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-virtualized .row-0 {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-freeze-left .row-1,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-freeze-top .row-1,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-virtualized .row-1 {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-freeze-left .cell-0-0,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-freeze-top .cell-0-0,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-virtualized .cell-0-0,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-freeze-left .cell-1-0,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-freeze-top .cell-1-0,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-virtualized .cell-1-0 {
+  flex: 0 0 auto;
+  left: 0;
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 400;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-freeze-left .cell-0-1,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-freeze-top .cell-0-1,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-virtualized .cell-0-1 {
+  z-index: 300;
+  flex: 0 0 auto;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-freeze-left .cell-1-1,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-freeze-top .cell-1-1,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-virtualized .cell-1-1 {
+  flex: 0 0 auto;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-fill-width .cell-0-1,
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-fill-width .cell-1-1 {
+  flex: 1 0 auto;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner.dash-fill-width table {
+  width: 100%;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td {
+  background-color: inherit;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td.focused {
+  margin: -1px;
+  z-index: 200;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td .dash-cell-value-container {
+  width: 100%;
+  height: 100%;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td .dash-input-cell-value-container {
+  position: relative;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td .dash-cell-value {
+  height: 100%;
+  width: 100%;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td input.dash-cell-value {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td input.dash-cell-value.unfocused::selection {
+  background-color: transparent;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td input.dash-cell-value.unfocused {
+  caret-color: transparent;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td div.dash-cell-value {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td .cell-value-shadow {
+  margin: auto 0;
+  opacity: 0;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td .input-cell-value-shadow {
+  display: inline-block;
+  height: initial;
+  width: initial;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td .dropdown-cell-value-shadow {
+  display: block;
+  height: 0px;
+  padding: 0 42px 0 10px;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner th.dash-filter {
+  position: relative;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner th.dash-filter input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td,
+.dash-spreadsheet-container .dash-spreadsheet-inner th {
+  background-clip: padding-box;
+  padding: 2px;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  height: 30px;
+  text-align: right;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner th .column-header--clear,
+.dash-spreadsheet-container .dash-spreadsheet-inner th .column-header--delete,
+.dash-spreadsheet-container .dash-spreadsheet-inner th .column-header--edit,
+.dash-spreadsheet-container .dash-spreadsheet-inner th .column-header--hide .column-header--sort {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+  cursor: pointer;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner textarea {
+  white-space: pre;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner table {
+  border-collapse: collapse;
+  font-family: monospace;
+  --accent: hotpink;
+  --border: lightgrey;
+  --text-color: #3c3c3c;
+  --hover: #fdfdfd;
+  --background-color-ellipses: #fdfdfd;
+  --faded-text: #fafafa;
+  --faded-text-header: #b4b4b4;
+  --selected-background: rgba(255, 65, 54, 0.2);
+  --faded-dropdown: #f0f0f0;
+  --muted: #c8c8c8;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner table:focus {
+  outline: none;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner thead {
+  display: table-row-group;
+}
+.dash-spreadsheet-container .elip {
+  text-align: center;
+  width: 100%;
+  background-color: var(--background-color-ellipses);
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td.dropdown {
+  /*
+        * To view the dropdown's contents, we need
+        * overflow-y: visible.
+        * Unfortunately, overflow-x: hidden and overflow-y: visible
+        * can't both be set at the same time.
+        * So, we have to make both overflow-x: visible and overflow-y: visble
+        *
+        * See https://stackoverflow.com/questions/6421966/
+        *
+        * There might be another solution with parent divs, but I haven't
+        * tried it.
+        */
+  overflow-x: visible;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner :not(.cell--selected) tr:hover,
+.dash-spreadsheet-container tr:hover input :not(.cell--selected) {
+  background-color: var(--hover);
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner th {
+  background-color: #fafafa;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner td {
+  background-color: white;
+}
+.dash-spreadsheet-container .expanded-row--empty-cell {
+  background-color: transparent;
+}
+.dash-spreadsheet-container .expanded-row {
+  text-align: center;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner input:not([type=radio]):not([type=checkbox]) {
+  padding: 0px;
+  margin: 0px;
+  height: calc(100% - 1px);
+  line-height: 30px;
+  border: none;
+  font-family: inherit;
+  text-align: right;
+  box-sizing: border-box;
+  color: var(--text-color);
+  background-color: transparent;
+  /* so as to not overlay the box shadow */
+  /* browser's default text-shadow is `$color 0px 0px 0px;`
+        * for `input`, which makes it look a little bit heavier than dropdowns
+        * or bare `td`
+        */
+  text-shadow: none;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner input.unfocused {
+  color: transparent;
+  text-shadow: 0 0 0 var(--text-color);
+  cursor: default;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner input.unfocused:focus {
+  outline: none;
+}
+.dash-spreadsheet-container .toggle-row {
+  border: none;
+  box-shadow: none;
+  width: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+  color: var(--faded-text);
+}
+.dash-spreadsheet-container .toggle-row--expanded {
+  color: var(--accent);
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner tr:hover .toggle-row {
+  color: var(--accent);
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner .dash-delete-cell,
+.dash-spreadsheet-container .dash-spreadsheet-inner .dash-delete-header {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+  font-size: 1.3rem;
+  text-align: center;
+  cursor: pointer;
+  color: var(--muted);
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner .dash-delete-cell:hover,
+.dash-spreadsheet-container .dash-spreadsheet-inner .dash-delete-header:hover {
+  color: var(--accent);
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner [class^='column-header--'] {
+  cursor: pointer;
+  float: left;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner .column-header--select {
+  height: auto;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner .column-header--select,
+.dash-spreadsheet-container .dash-spreadsheet-inner .column-header--sort {
+  color: var(--faded-text-header);
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner .column-header--clear,
+.dash-spreadsheet-container .dash-spreadsheet-inner .column-header--delete,
+.dash-spreadsheet-container .dash-spreadsheet-inner .column-header--edit,
+.dash-spreadsheet-container .dash-spreadsheet-inner .column-header--hide {
+  opacity: 0.1;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+.dash-spreadsheet-container .dash-spreadsheet-inner th:hover [class^='column-header--']:not(.disabled) {
+  color: var(--accent);
+  opacity: 1;
+}
+</style><style type="text/css">.dash-spreadsheet .Select,
+.dash-spreadsheet .Select-control {
+    border: none;
+    cursor: pointer;
+    height: 30px;  /* matches the td height and line-height */
+    border: none;
+}
+
+.dash-spreadsheet .Select-placeholder,
+.dash-spreadsheet .Select--single > .Select-control .Select-value {
+    height: 100%;
+    line-height: inherit;
+}
+
+.dash-spreadsheet .Select.has-value.Select--single > .Select-control .Select-value .Select-value-label,
+.dash-spreadsheet .Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
+    color: var(--text-color);
+}
+
+.dash-spreadsheet .Select:hover,
+.dash-spreadsheet .Select-control:hover {
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.dash-spreadsheet .Select-menu-outer {
+    z-index: 100;
+}
+
+.dash-spreadsheet .Select-arrow {
+    border-top-color: var(--faded-dropdown);
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.dash-spreadsheet .Select-control:hover .Select-arrow {
+    border-top-color: var(--accent);
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.dash-spreadsheet .is-open > .Select-control .Select-arrow {
+    border-bottom-color: var(--background-color-8-react-select);
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: transparent;
+}
+
+.dash-spreadsheet .Select--multi .Select-value,
+.dash-spreadsheet .Select--multi a.Select-value-label {
+    color: var(--color-8-react-select);
+}
+
+.dash-spreadsheet .Select {
+    border-radius: 0;
+}
+
+.dash-spreadsheet .Select.is-disabled > .Select-control {
+    border: none;
+}
+
+.dash-spreadsheet .Select--multi .Select-value-icon:hover,
+.dash-spreadsheet .Select--multi .Select-value-icon:focus {
+    font-weight: bold;
+}
+
+.dash-spreadsheet .Select.is-disabled .Select-control {
+    cursor: not-allowed;
+}
+
+.dash-spreadsheet .Select-menu-outer {
+    background-color: white;
+    border: none;
+    border-bottom: thin var(--border) solid;
+    border-radius: 0;
+    border-top: none;
+}
+
+.dash-spreadsheet .Select-option {
+    background-color: inherit;
+    color: var(--accent);
+}
+
+.dash-spreadsheet .Select-option:hover {
+    font-weight: bold;
+    color: var(--accent);
+    background-color: var(--hover);
+}
+
+.dash-spreadsheet .Select.is-focused:not(.is-open) > .Select-control {
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: #fff;
+}
+
+.dash-spreadsheet .Select-option.is-focused {
+    background-color: white;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.dash-spreadsheet .Select-clear {
+    color: transparent;
+}
+.dash-spreadsheet .Select:hover .Select-clear {
+    color: var(--accent);
+}
+
+.dash-spreadsheet .Select-control {
+    padding-left: 2px;
+}
+</style><style id="plotly.js-style-global"></style><style type="text/css">.dash-debug-menu {
+    transition: width 0.05s, background-color 0.1s;
+    position: fixed;
+    bottom: 35px;
+    right: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+.dash-debug-menu--closed {
+    background-color: #119dff;
+    border-radius: 100%;
+    width: 64px;
+    height: 64px;
+}
+.dash-debug-menu--opened {
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25),
+        0px 1px 3px rgba(162, 177, 198, 0.32);
+    border-radius: 4px;
+    padding: 12px 0px;
+    background-color: white;
+}
+
+.dash-debug-menu--closed:hover {
+    cursor: pointer;
+    background-color: #108de4;
+}
+
+.dash-debug-menu__icon {
+    width: 24px;
+    height: 28px;
+}
+.dash-debug-menu__icon--close {
+    width: 14px;
+    height: 14px;
+}
+.dash-debug-menu__icon--bell {
+    height: 24px;
+    width: 28px;
+}
+.dash-debug-menu__icon--debug {
+    height: 24px;
+    width: auto;
+}
+.dash-debug-menu__icon--graph {
+    height: 24px;
+}
+
+.dash-debug-menu__content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.dash-debug-menu__button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 74px;
+    margin-left: 10px;
+}
+.dash-debug-menu__button-label {
+    color: #A2B1C6;
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+.dash-debug-menu__button {
+    background-color: white;
+    border-radius: 100%;
+    border: 1px solid #B9C2CE;
+    width: 64px;
+    height: 64px;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s;
+    color: black;
+}
+.dash-debug-menu__button--enabled {
+    background-color: #00CC96;
+    color: white;
+}
+.dash-debug-menu__button--small {
+    width: 32px;
+    height: 32px;
+    background-color: #B9C2CE;
+}
+.dash-debug-menu__button:hover {
+    cursor: pointer;
+    background-color: #f5f5f5;
+}
+.dash-debug-menu__button--small:hover {
+    background-color: #a1a9b5;
+}
+
+.dash-debug-menu__button--enabled:hover {
+    background-color: #03bb8a;
+}
+</style><style type="text/css">.dash-debug-alert-container {
+    box-sizing: border-box;
+    background: #f3f6fa;
+    border-radius: 2px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: background-color 0.1s, border 0.1s;
+}
+.dash-debug-alert-container:hover {
+    cursor: pointer;
+}
+.dash-debug-alert-container--opened {
+    background-color: #119dff;
+    color: white;
+}
+.dash-debug-alert-container__icon {
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+}
+.dash-debug-alert-container__icon--warning {
+    height: auto;
+}
+
+.dash-debug-alert {
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+}
+
+.dash-debug-alert-label {
+    display: flex;
+    position: fixed;
+    bottom: 81px;
+    right: 29px;
+    z-index: 10001;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25),
+        0px 1px 3px rgba(162, 177, 198, 0.32);
+    border-radius: 32px;
+    background-color: white;
+    padding: 4px;
+}
+</style><style type="text/css">.dash-error-menu {
+    max-width: 50%;
+    max-height: 60%;
+    display: contents;
+    font-family: monospace;
+    font-size: 14px;
+    font-variant-ligatures: common-ligatures;
+}
+
+.dash-error-card {
+    box-sizing: border-box;
+    background: #ffffff;
+    display: inline-block;
+    /* shadow-1 */
+    box-shadow: 0px 6px 16px rgba(80, 103, 132, 0.165),
+        0px 2px 6px rgba(80, 103, 132, 0.12),
+        0px 0px 1px rgba(80, 103, 132, 0.32);
+    border-radius: 4px;
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    animation: dash-error-card-animation 0.5s;
+    padding: 24px;
+    text-align: left;
+    background-color: white;
+
+}
+.dash-error-card--alerts-tray {
+    position: absolute;
+    top: -300px;
+    left: -1px;
+    animation: none;
+    box-shadow: none;
+    border: 1px solid #ececec;
+    border-bottom: 0;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    width: 422px;
+}
+.dash-error-card--container {
+    padding: 10px 10px;
+    width: 600px;
+    max-width: 800px;
+    max-height: calc(100vh - 50px);
+    margin: 10px;
+    overflow: auto;
+    z-index: 1001;  /* above the plotly.js toolbar */
+}
+
+.dash-error-card__topbar {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dash-error-card__message {
+    font-size: 14px;
+}
+
+.dash-error-card__message > strong {
+    color: #ff4500;
+}
+
+.dash-error-card__content {
+    box-sizing: border-box;
+    padding: 10px 10px;
+    background-color: white;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25),
+        0px 1px 3px rgba(162, 177, 198, 0.32);
+    border-radius: 2px;
+    margin-bottom: 8px;
+}
+
+.dash-error-card__list-item {
+    background: #ffffff;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25),
+        0px 1px 3px rgba(162, 177, 198, 0.32);
+    border-radius: 2px;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+@keyframes dash-error-card-animation {
+    from {
+        opacity: 0;
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+}
+</style><style type="text/css">.error-container {
+    margin-top: 10px;
+}
+
+.dash-fe-errors {
+    min-width: 386px;
+    max-width: 650px;
+    max-height: 450px;
+    display: inline-block;
+}
+
+.dash-fe-error__icon-error {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 16px;
+}
+.dash-fe-error__icon-close {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    display: inline-block;
+}
+.dash-fe-error__icon-arrow {
+    width: 8px;
+    height: 28px;
+    margin: 0px 8px;
+}
+.dash-fe-error-top {
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+}
+.dash-fe-error-top__group:first-child {
+    /*
+     * 77% is the maximum space allowed based off of the other elements
+     * in the top part of the error container (timestamp & collapse arrow).
+     * this was manually determined */
+    width: 77%;
+}
+.dash-fe-error-top__group {
+    display: inline-flex;
+    align-items: center;
+}
+.dash-fe-error__title {
+    text-align: left;
+    margin: 0px;
+    margin-left: 5px;
+    padding: 0px;
+    font-size: 14px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.dash-fe-error__timestamp {
+    margin-right: 20px;
+}
+.dash-fe-error__collapse--flipped {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.dash-fe-error__info_title {
+    margin: 0;
+    color: #506784;
+    font-size: 16px;
+    background-color: #f3f6fa;
+    border: 2px solid #dfe8f3;
+    box-sizing: border-box;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 10px;
+}
+
+.dash-fe-error__info {
+    border: 1px solid #dfe8f3;
+    margin: 0 0 1em 0;
+    padding: 10px;
+
+    background-color: white;
+    border: 2px solid #dfe8f3;
+    color: #506784;
+    overflow: auto;
+    white-space: pre-wrap;
+}
+
+.dash-fe-error__curved {
+    border-radius: 4px;
+}
+
+.dash-fe-error__curved-top {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-width: 0px;
+}
+
+.dash-fe-error__curved-bottom {
+    border-radius-bottom-left: 4px;
+    border-radius-bottom-right: 4px;
+    background-color: #FFEFEF;
+}
+
+.dash-be-error__st {
+    background-color: #fdf3f4;
+    min-width: 386px;
+    max-width: 650px;
+    /* iframe container handles the scrolling */
+    overflow: hidden;
+    display: inline-block;
+}
+</style><style type="text/css">.percy-show {
+    display: none;
+}
+
+@media only percy {
+    .percy-hide {
+        display: none;
+    }
+    .percy-show {
+        display: block;
+    }
+}
+</style><style type="text/css">.dash-callback-dag--container {
+    border-radius: 4px;
+    position: fixed;
+    bottom: 165px;
+    right: 16px;
+    max-width: 80vw;
+    max-height: calc(100vh - 180px);
+    overflow: auto;
+    box-sizing: border-box;
+    background: #ffffff;
+    display: inline-block;
+    /* shadow-1 */
+    box-shadow: 0px 6px 16px rgba(80, 103, 132, 0.165),
+        0px 2px 6px rgba(80, 103, 132, 0.12),
+        0px 0px 1px rgba(80, 103, 132, 0.32);
+}
+</style><style type="text/css" id="#table-dynamic-inline.css"></style><style type="text/css" id="#table-dynamic-inline.css"></style><style id="plotly.js-style-modebar-b2eb32"></style></head>
+    <body>
+        
+<div id="react-entry-point"><div id="_dash-global-error-container"><div><div class="dash-debug-menu dash-debug-menu--closed"><svg width="42" height="24" fill="none" class="dash-debug-menu__icon dash-debug-menu__icon--debug"><path d="M14.85 21.197L5.616 12l9.225-9.197L12.028 0 0 12l12.037 12 2.813-2.803zm12.3 0L36.375 12 27.15 2.803 29.963 0 42 12 29.962 24l-2.812-2.803z" fill="#fff"></path></svg></div><div><div><div id="_dash-app-content"><div><h1>Welcome to the state of New York</h1><div>Put down the radius of the region</div><input id="radius" type="text" step="1" value="1"><div>Put the longitude coordinate (New York State varies approximately from -79.5 to -71.5)</div><input id="x_cord" type="text" step="1" value="-75"><div>Put the latitude coordinate (New York State varies approximately from 40 to 45)</div><input id="y_cord" type="text" step="1" value="42"><button id="button">Click here to see the results</button><div id="my-div"><div><h2>Histogram for the top 16 types of roads in New York</h2><div id="column" class="js-plotly-plot"><div class="plot-container plotly"><div class="svg-container" style="position: relative; width: 1589px; height: 450px;"><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1589" height="450" style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;"><defs id="defs-b2eb32"><g class="clips"><clipPath id="clipb2eb32xyplot" class="plotclip"><rect width="1429" height="270"></rect></clipPath><clipPath class="axesclip" id="clipb2eb32x"><rect x="80" y="0" width="1429" height="450"></rect></clipPath><clipPath class="axesclip" id="clipb2eb32y"><rect x="0" y="100" width="1589" height="270"></rect></clipPath><clipPath class="axesclip" id="clipb2eb32xy"><rect x="80" y="100" width="1429" height="270"></rect></clipPath></g><g class="gradients"></g></defs><g class="bglayer"></g><g class="draglayer cursor-crosshair"><g class="xy"><rect class="nsewdrag drag" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="80" y="100" width="1429" height="270"></rect><rect class="nwdrag drag cursor-nw-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="60" y="80" width="20" height="20"></rect><rect class="nedrag drag cursor-ne-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="1509" y="80" width="20" height="20"></rect><rect class="swdrag drag cursor-sw-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="60" y="370" width="20" height="20"></rect><rect class="sedrag drag cursor-se-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="1509" y="370" width="20" height="20"></rect><rect class="ewdrag drag cursor-ew-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="222.9" y="370.5" width="1143.2" height="20"></rect><rect class="wdrag drag cursor-w-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="80" y="370.5" width="142.9" height="20"></rect><rect class="edrag drag cursor-e-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="1366.1000000000001" y="370.5" width="142.9" height="20"></rect><rect class="nsdrag drag cursor-ns-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="127" width="20" height="216"></rect><rect class="sdrag drag cursor-s-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="343" width="20" height="27"></rect><rect class="ndrag drag cursor-n-resize" style="fill: transparent; stroke-width: 0px; pointer-events: all;" data-subplot="xy" x="59.5" y="100" width="20" height="27"></rect></g></g><g class="layer-below"><g class="imagelayer"></g><g class="shapelayer"></g></g><g class="cartesianlayer"><g class="subplot xy"><g class="layer-subplot"><g class="shapelayer"></g><g class="imagelayer"></g></g><g class="gridlayer"><g class="x"></g><g class="y"><path class="ygrid crisp" transform="translate(0,334.14)" d="M80,0h1429" style="stroke: rgb(238, 238, 238); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,298.28)" d="M80,0h1429" style="stroke: rgb(238, 238, 238); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,262.40999999999997)" d="M80,0h1429" style="stroke: rgb(238, 238, 238); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,226.55)" d="M80,0h1429" style="stroke: rgb(238, 238, 238); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,190.69)" d="M80,0h1429" style="stroke: rgb(238, 238, 238); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,154.82999999999998)" d="M80,0h1429" style="stroke: rgb(238, 238, 238); stroke-opacity: 1; stroke-width: 1px;"></path><path class="ygrid crisp" transform="translate(0,118.97)" d="M80,0h1429" style="stroke: rgb(238, 238, 238); stroke-opacity: 1; stroke-width: 1px;"></path></g></g><g class="zerolinelayer"><path class="yzl zl crisp" transform="translate(0,370)" d="M80,0h1429" style="stroke: rgb(68, 68, 68); stroke-opacity: 1; stroke-width: 1px;"></path></g><path class="xlines-below"></path><path class="ylines-below"></path><g class="overlines-below"></g><g class="xaxislayer-below"></g><g class="yaxislayer-below"></g><g class="overaxes-below"></g><g class="plot" transform="translate(80, 100)" clip-path="url('#clipb2eb32xyplot')"><g class="barlayer mlayer"><g class="trace bars" style="opacity: 1;"><g class="points"><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M8.93,270V13.5H80.38V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M98.24,270V166.81H169.69V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M187.56,270V241.4H259.01V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M276.87,270V247.1H348.32V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M366.18,270V251.52H437.63V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M455.49,270V257.2H526.94V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M544.81,270V264.51H616.26V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M634.12,270V265.11H705.57V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M723.43,270V267.01H794.88V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M812.74,270V268H884.19V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M902.06,270V268H973.51V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M991.37,270V268H1062.82V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M1080.68,270V268H1152.13V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M1169.99,270V268H1241.44V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M1259.31,270V268H1330.76V270Z"></path></g><g class="point"><path style="vector-effect: non-scaling-stroke; opacity: 1; stroke-width: 0px; fill: rgb(31, 119, 180); fill-opacity: 1;" d="M1348.62,270V268H1420.07V270Z"></path></g></g></g></g></g><g class="overplot"></g><path class="xlines-above crisp" style="fill: none;" d="M0,0"></path><path class="ylines-above crisp" style="fill: none;" d="M0,0"></path><g class="overlines-above"></g><g class="xaxislayer-above"><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Unknown" data-math="N" transform="translate(124.66,0)">Unknown</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Road" data-math="N" transform="translate(213.97,0)">Road</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Street" data-math="N" transform="translate(303.28,0)">Street</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Lane" data-math="N" transform="translate(392.59,0)">Lane</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Drive" data-math="N" transform="translate(481.91,0)">Drive</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Avenue" data-math="N" transform="translate(571.22,0)">Avenue</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Trail" data-math="N" transform="translate(660.53,0)">Trail</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Court" data-math="N" transform="translate(749.84,0)">Court</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Place" data-math="N" transform="translate(839.16,0)">Place</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Way" data-math="N" transform="translate(928.47,0)">Way</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Circle" data-math="N" transform="translate(1017.78,0)">Circle</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Terrace" data-math="N" transform="translate(1107.09,0)">Terrace</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Highway" data-math="N" transform="translate(1196.41,0)">Highway</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Park" data-math="N" transform="translate(1285.72,0)">Park</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Path" data-math="N" transform="translate(1375.03,0)">Path</text></g><g class="xtick"><text text-anchor="middle" x="0" y="383" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="Spur" data-math="N" transform="translate(1464.34,0)">Spur</text></g></g><g class="yaxislayer-above"><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="0" data-math="N" transform="translate(0,370)">0</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="5k" data-math="N" transform="translate(0,334.14)">5k</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="10k" data-math="N" transform="translate(0,298.28)">10k</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="15k" data-math="N" transform="translate(0,262.40999999999997)">15k</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="20k" data-math="N" transform="translate(0,226.55)">20k</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="25k" data-math="N" transform="translate(0,190.69)">25k</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="30k" data-math="N" transform="translate(0,154.82999999999998)">30k</text></g><g class="ytick"><text text-anchor="end" x="79" y="4.199999999999999" style="font-family: &quot;Open Sans&quot;, verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;" data-unformatted="35k" data-math="N" transform="translate(0,118.97)">35k</text></g></g><g class="overaxes-above"></g></g></g><g class="polarlayer"></g><g class="ternarylayer"></g><g class="geolayer"></g><g class="funnelarealayer"></g><g class="pielayer"></g><g class="sunburstlayer"></g><g class="glimages"></g></svg><div class="gl-container"></div><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1589" height="450"><defs id="topdefs-b2eb32"><g class="clips"></g></defs><g class="indicatorlayer"></g><g class="layer-above"><g class="imagelayer"></g><g class="shapelayer"></g></g><g class="infolayer"><g class="g-gtitle"></g><g class="g-xtitle"></g><g class="g-ytitle"></g></g><g class="menulayer"></g><g class="zoomlayer"></g></svg><div class="modebar-container" style="position: absolute; top: 0px; right: 0px; width: 100%;"><div id="modebar-b2eb32" class="modebar modebar--hover ease-bg"><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Download plot as a png" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m500 450c-83 0-150-67-150-150 0-83 67-150 150-150 83 0 150 67 150 150 0 83-67 150-150 150z m400 150h-120c-16 0-34 13-39 29l-31 93c-6 15-23 28-40 28h-340c-16 0-34-13-39-28l-31-94c-6-15-23-28-40-28h-120c-55 0-100-45-100-100v-450c0-55 45-100 100-100h800c55 0 100 45 100 100v450c0 55-45 100-100 100z m-400-550c-138 0-250 112-250 250 0 138 112 250 250 250 138 0 250-112 250-250 0-138-112-250-250-250z m365 380c-19 0-35 16-35 35 0 19 16 35 35 35 19 0 35-16 35-35 0-19-16-35-35-35z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn active" data-title="Zoom" data-attr="dragmode" data-val="zoom" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m1000-25l-250 251c40 63 63 138 63 218 0 224-182 406-407 406-224 0-406-182-406-406s183-406 407-406c80 0 155 22 218 62l250-250 125 125z m-812 250l0 438 437 0 0-438-437 0z m62 375l313 0 0-312-313 0 0 312z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Pan" data-attr="dragmode" data-val="pan" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m1000 350l-187 188 0-125-250 0 0 250 125 0-188 187-187-187 125 0 0-250-250 0 0 125-188-188 186-187 0 125 252 0 0-250-125 0 187-188 188 188-125 0 0 250 250 0 0-126 187 188z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Box Select" data-attr="dragmode" data-val="select" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m0 850l0-143 143 0 0 143-143 0z m286 0l0-143 143 0 0 143-143 0z m285 0l0-143 143 0 0 143-143 0z m286 0l0-143 143 0 0 143-143 0z m-857-286l0-143 143 0 0 143-143 0z m857 0l0-143 143 0 0 143-143 0z m-857-285l0-143 143 0 0 143-143 0z m857 0l0-143 143 0 0 143-143 0z m-857-286l0-143 143 0 0 143-143 0z m286 0l0-143 143 0 0 143-143 0z m285 0l0-143 143 0 0 143-143 0z m286 0l0-143 143 0 0 143-143 0z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Lasso Select" data-attr="dragmode" data-val="lasso" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1031 1000" class="icon" height="1em" width="1em"><path d="m1018 538c-36 207-290 336-568 286-277-48-473-256-436-463 10-57 36-108 76-151-13-66 11-137 68-183 34-28 75-41 114-42l-55-70 0 0c-2-1-3-2-4-3-10-14-8-34 5-45 14-11 34-8 45 4 1 1 2 3 2 5l0 0 113 140c16 11 31 24 45 40 4 3 6 7 8 11 48-3 100 0 151 9 278 48 473 255 436 462z m-624-379c-80 14-149 48-197 96 42 42 109 47 156 9 33-26 47-66 41-105z m-187-74c-19 16-33 37-39 60 50-32 109-55 174-68-42-25-95-24-135 8z m360 75c-34-7-69-9-102-8 8 62-16 128-68 170-73 59-175 54-244-5-9 20-16 40-20 61-28 159 121 317 333 354s407-60 434-217c28-159-121-318-333-355z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Zoom in" data-attr="zoom" data-val="in" data-toggle="false" data-gravity="n"><svg viewBox="0 0 875 1000" class="icon" height="1em" width="1em"><path d="m1 787l0-875 875 0 0 875-875 0z m687-500l-187 0 0-187-125 0 0 187-188 0 0 125 188 0 0 187 125 0 0-187 187 0 0-125z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Zoom out" data-attr="zoom" data-val="out" data-toggle="false" data-gravity="n"><svg viewBox="0 0 875 1000" class="icon" height="1em" width="1em"><path d="m0 788l0-876 875 0 0 876-875 0z m688-500l-500 0 0 125 500 0 0-125z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Autoscale" data-attr="zoom" data-val="auto" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="m250 850l-187 0-63 0 0-62 0-188 63 0 0 188 187 0 0 62z m688 0l-188 0 0-62 188 0 0-188 62 0 0 188 0 62-62 0z m-875-938l0 188-63 0 0-188 0-62 63 0 187 0 0 62-187 0z m875 188l0-188-188 0 0-62 188 0 62 0 0 62 0 188-62 0z m-125 188l-1 0-93-94-156 156 156 156 92-93 2 0 0 250-250 0 0-2 93-92-156-156-156 156 94 92 0 2-250 0 0-250 0 0 93 93 157-156-157-156-93 94 0 0 0-250 250 0 0 0-94 93 156 157 156-157-93-93 0 0 250 0 0 250z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Reset axes" data-attr="zoom" data-val="reset" data-toggle="false" data-gravity="n"><svg viewBox="0 0 928.6 1000" class="icon" height="1em" width="1em"><path d="m786 296v-267q0-15-11-26t-25-10h-214v214h-143v-214h-214q-15 0-25 10t-11 26v267q0 1 0 2t0 2l321 264 321-264q1-1 1-4z m124 39l-34-41q-5-5-12-6h-2q-7 0-12 3l-386 322-386-322q-7-4-13-4-7 2-12 7l-35 41q-4 5-3 13t6 12l401 334q18 15 42 15t43-15l136-114v109q0 8 5 13t13 5h107q8 0 13-5t5-13v-227l122-102q5-5 6-12t-4-13z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a rel="tooltip" class="modebar-btn" data-title="Toggle Spike Lines" data-attr="_cartesianSpikesEnabled" data-val="on" data-toggle="false" data-gravity="n"><svg viewBox="0 0 1000 1000" class="icon" height="1em" width="1em"><path d="M512 409c0-57-46-104-103-104-57 0-104 47-104 104 0 57 47 103 104 103 57 0 103-46 103-103z m-327-39l92 0 0 92-92 0z m-185 0l92 0 0 92-92 0z m370-186l92 0 0 93-92 0z m0-184l92 0 0 92-92 0z" transform="matrix(1.5 0 0 -1.5 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn active" data-title="Show closest data on hover" data-attr="hovermode" data-val="closest" data-toggle="false" data-gravity="ne"><svg viewBox="0 0 1500 1000" class="icon" height="1em" width="1em"><path d="m375 725l0 0-375-375 375-374 0-1 1125 0 0 750-1125 0z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a><a rel="tooltip" class="modebar-btn" data-title="Compare data on hover" data-attr="hovermode" data-val="x" data-toggle="false" data-gravity="ne"><svg viewBox="0 0 1125 1000" class="icon" height="1em" width="1em"><path d="m187 786l0 2-187-188 188-187 0 0 937 0 0 373-938 0z m0-499l0 1-187-188 188-188 0 0 937 0 0 376-938-1z" transform="matrix(1 0 0 -1 0 850)"></path></svg></a></div><div class="modebar-group"><a href="https://plot.ly/" target="_blank" data-title="Produced with Plotly" class="modebar-btn plotlyjsicon modebar-btn--logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 132" height="1em" width="1em"><defs><style>.cls-1 {fill: #119dff;} .cls-2 {fill: #25fefd;} .cls-3 {fill: #fff;}</style></defs><title>plotly-logomark</title><g id="symbol"><rect class="cls-1" width="132" height="132" rx="6" ry="6"></rect><circle class="cls-2" cx="78" cy="54" r="6"></circle><circle class="cls-2" cx="102" cy="30" r="6"></circle><circle class="cls-2" cx="78" cy="30" r="6"></circle><circle class="cls-2" cx="54" cy="30" r="6"></circle><circle class="cls-2" cx="30" cy="30" r="6"></circle><circle class="cls-2" cx="30" cy="54" r="6"></circle><path class="cls-3" d="M30,72a6,6,0,0,0-6,6v24a6,6,0,0,0,12,0V78A6,6,0,0,0,30,72Z"></path><path class="cls-3" d="M78,72a6,6,0,0,0-6,6v24a6,6,0,0,0,12,0V78A6,6,0,0,0,78,72Z"></path><path class="cls-3" d="M54,48a6,6,0,0,0-6,6v48a6,6,0,0,0,12,0V54A6,6,0,0,0,54,48Z"></path><path class="cls-3" d="M102,48a6,6,0,0,0-6,6v48a6,6,0,0,0,12,0V54A6,6,0,0,0,102,48Z"></path></g></svg></a></div></div></div><svg class="main-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="1589" height="450"><g class="hoverlayer"></g></svg></div></div></div><h2>20 Most common street names in New York</h2><div><div id="table" style="position: relative;"><div class="dash-spreadsheet-menu"><div></div></div><div class="dash-spreadsheet-container dash-spreadsheet dash-empty-01 dash-no-filter dash-fill-width" style="width: 100%;"><div class="dash-spreadsheet-inner dash-spreadsheet dash-empty-01 dash-no-filter dash-fill-width" style="width: 100%;"><div class="row row-0"><div class="cell cell-0-0 "></div><div style="margin-right: 10px;" class="cell cell-0-1 "></div></div><div class="row row-1"><div class="cell cell-1-0 "></div><div class="cell cell-1-1 dash-fixed-content"><table tabindex="-1"><tbody><tr><th data-dash-column="title" colspan="1" class="dash-header column-0 " style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;"><div><span class="column-header-name">title</span></div></th><th data-dash-column="name" colspan="1" class="dash-header column-1 cell--right-last " style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;"><div><span class="column-header-name">name</span></div></th></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="0"><div class="unfocused dash-cell-value">1</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="0"><div class="unfocused dash-cell-value">State Highway</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="1"><div class="unfocused dash-cell-value">2</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="1"><div class="unfocused dash-cell-value">County Road</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="2"><div class="unfocused dash-cell-value">3</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="2"><div class="unfocused dash-cell-value">Main</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="3"><div class="unfocused dash-cell-value">4</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="3"><div class="unfocused dash-cell-value">County Highway</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="4"><div class="unfocused dash-cell-value">5</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="4"><div class="unfocused dash-cell-value">Maple</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="5"><div class="unfocused dash-cell-value">6</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="5"><div class="unfocused dash-cell-value">Church</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="6"><div class="unfocused dash-cell-value">7</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="6"><div class="unfocused dash-cell-value">River</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="7"><div class="unfocused dash-cell-value">8</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="7"><div class="unfocused dash-cell-value">Park</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="8"><div class="unfocused dash-cell-value">9</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="8"><div class="unfocused dash-cell-value">Old Route</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="9"><div class="unfocused dash-cell-value">10</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="9"><div class="unfocused dash-cell-value">Mill</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="10"><div class="unfocused dash-cell-value">11</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="10"><div class="unfocused dash-cell-value">Pine</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="11"><div class="unfocused dash-cell-value">12</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="11"><div class="unfocused dash-cell-value">Smith</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="12"><div class="unfocused dash-cell-value">13</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="12"><div class="unfocused dash-cell-value">County Route</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="13"><div class="unfocused dash-cell-value">14</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="13"><div class="unfocused dash-cell-value">Lake</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="14"><div class="unfocused dash-cell-value">15</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="14"><div class="unfocused dash-cell-value">Bridge</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="15"><div class="unfocused dash-cell-value">16</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="15"><div class="unfocused dash-cell-value">Brandywine</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="16"><div class="unfocused dash-cell-value">17</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="16"><div class="unfocused dash-cell-value">Railroad</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="17"><div class="unfocused dash-cell-value">18</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="17"><div class="unfocused dash-cell-value">North</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="18"><div class="unfocused dash-cell-value">19</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="18"><div class="unfocused dash-cell-value">New York State</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="title" data-dash-row="19"><div class="unfocused dash-cell-value">20</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="19"><div class="unfocused dash-cell-value">Oak</div></td></tr></tbody></table></div></div></div></div></div></div><h2>20 Unusual street names in New York</h2><div><div id="table" style="position: relative;"><div class="dash-spreadsheet-menu"><div></div></div><div class="dash-spreadsheet-container dash-spreadsheet dash-empty-01 dash-no-filter dash-fill-width" style="width: 100%;"><div class="dash-spreadsheet-inner dash-spreadsheet dash-empty-01 dash-no-filter dash-fill-width" style="width: 100%;"><div class="row row-0"><div class="cell cell-0-0 "></div><div style="margin-right: 10px;" class="cell cell-0-1 "></div></div><div class="row row-1"><div class="cell cell-1-0 "></div><div class="cell cell-1-1 dash-fixed-content"><table tabindex="-1"><tbody><tr><th data-dash-column="score" colspan="1" class="dash-header column-0 " style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;"><div><span class="column-header-name">score</span></div></th><th data-dash-column="name" colspan="1" class="dash-header column-1 cell--right-last " style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;"><div><span class="column-header-name">name</span></div></th></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="0"><div class="unfocused dash-cell-value">21.616546709370358</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="0"><div class="unfocused dash-cell-value">Long Pond - Beaverkill Ridge / Mongaup - Willowemoc</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="1"><div class="unfocused dash-cell-value">20.149018487640337</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="1"><div class="unfocused dash-cell-value">Shinhollow Road / Shawangunk Ridge Trail / Long</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="2"><div class="unfocused dash-cell-value">18.742994078449748</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="2"><div class="unfocused dash-cell-value">Indian Ridge Apartments Buildings A_M</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="3"><div class="unfocused dash-cell-value">18.564863628726066</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="3"><div class="unfocused dash-cell-value">Sturges Corners-Schoharie County Line</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="4"><div class="unfocused dash-cell-value">18.403933695531233</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="4"><div class="unfocused dash-cell-value">Hambletville-Masonville Eaton</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="5"><div class="unfocused dash-cell-value">18.3502296162533</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="5"><div class="unfocused dash-cell-value">Ukrainian American Yth Assn Camp</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="6"><div class="unfocused dash-cell-value">18.241014040437804</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="6"><div class="unfocused dash-cell-value">Indian Ridge Apartments buildings</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="7"><div class="unfocused dash-cell-value">17.525671881644918</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="7"><div class="unfocused dash-cell-value">Catskill Interperative Center</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="8"><div class="unfocused dash-cell-value">17.343737820002346</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="8"><div class="unfocused dash-cell-value">Lundy Road - Rogue Harbor Road</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="9"><div class="unfocused dash-cell-value">17.316532571485524</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="9"><div class="unfocused dash-cell-value">Trout Creek-Pomeroys Corners</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="10"><div class="unfocused dash-cell-value">17.210674743368582</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="10"><div class="unfocused dash-cell-value">New York State Snowmobile Secondary</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="11"><div class="unfocused dash-cell-value">17.124985973570094</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="11"><div class="unfocused dash-cell-value">Shinhollow Road / Shawungunk Ridge</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="12"><div class="unfocused dash-cell-value">16.901676273711253</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="12"><div class="unfocused dash-cell-value">Chapel Field Elementary School</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="13"><div class="unfocused dash-cell-value">16.865622314795765</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="13"><div class="unfocused dash-cell-value">Tennanah Lake Country Estate</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="14"><div class="unfocused dash-cell-value">16.81723149748641</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="14"><div class="unfocused dash-cell-value">Clothing Optional Swim Area access</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="15"><div class="unfocused dash-cell-value">16.670945817477524</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="15"><div class="unfocused dash-cell-value">Roosa Gap and Pleasant Valley</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="16"><div class="unfocused dash-cell-value">16.632127854507605</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="16"><div class="unfocused dash-cell-value">Skinners Falls - Milanville</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="17"><div class="unfocused dash-cell-value">16.60223608776377</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="17"><div class="unfocused dash-cell-value">Kelly Hollow Cross-Country Ski</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="18"><div class="unfocused dash-cell-value">16.542642018892163</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="18"><div class="unfocused dash-cell-value">Slide Mountain-Woodland Valley</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="19"><div class="unfocused dash-cell-value">16.518162618276502</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="19"><div class="unfocused dash-cell-value">South Maplewood and Sackett Pond</div></td></tr><tr><td tabindex="-1" class="dash-cell column-0" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="score" data-dash-row="20"><div class="unfocused dash-cell-value">16.484734622561184</div></td><td tabindex="-1" class="dash-cell column-1" style="border-color: rgb(211, 211, 211); border-style: solid; border-width: 1px;" data-dash-column="name" data-dash-row="20"><div class="unfocused dash-cell-value">Federal Government Rd Radar</div></td></tr></tbody></table></div></div></div></div></div></div></div></div></div></div></div><div class="dash-error-menu"><div class=""></div></div></div></div></div></div>
+
+        <footer>
+            <script id="_dash-config" type="application/json">{"url_base_pathname": null, "requests_pathname_prefix": "/", "ui": true, "props_check": true, "show_undo_redo": false, "hot_reload": {"interval": 3000, "max_retry": 8}}</script>
+            <script src="Dash_1_fichiers/react16.js"></script>
+<script src="Dash_1_fichiers/react-dom16.js"></script>
+<script src="Dash_1_fichiers/prop-types15.js"></script>
+<script src="Dash_1_fichiers/bundle.js"></script>
+<script src="Dash_1_fichiers/dash_html_components.js"></script>
+<script src="Dash_1_fichiers/plotly-1.js"></script>
+<script src="Dash_1_fichiers/highlight.js"></script>
+<script src="Dash_1_fichiers/dash_core_components.js"></script>
+<script src="Dash_1_fichiers/dash_renderer.js"></script>
+            <script id="_dash-renderer" type="application/javascript">var renderer = new DashRenderer();</script>
+        </footer>
+    
+<svg id="js-plotly-tester" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="position: absolute; left: -10000px; top: -10000px; width: 9000px; height: 9000px; z-index: 1;"><path class="js-reference-point" d="M0,0H1V1H0Z" style="stroke-width: 0px; fill: black;"></path></svg></body></html>
