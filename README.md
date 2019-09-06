@@ -3,7 +3,7 @@ This project is based the word analysis of geographic data and results are proje
 
 $ python main.py
 
-This causes to open a local site http://127.0.0.1:8050/(better check it up on the terminal for the exact website name) to open and you can play with the numbers there for the output.
+This causes to open a local site http://127.0.0.1:8050/ (better check it up on the terminal for the exact website name) to open and you can play with the numbers there for the output.
 
 About the project: The project consists of three parts:
 First part describes the frequency of peculiar types of streets(street, Avenue, Boulevard, Road, etc) and draws a histogram of them.
