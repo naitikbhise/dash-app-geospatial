@@ -10,4 +10,4 @@ First part describes the frequency of peculiar types of streets(street, Avenue, 
 Second part explains the Top 20 most commonly named streets or the Top 20 most frequent names of the streets in the region
 Third region shows the top 20 weird street names in the area.
 
-There are two regions available but I am working primarily on New York State Data.
+There are two regions available but I am working primarily on New York State Data. The data for other states as well as New York can be found here: https://download.geofabrik.de/north-america.html
